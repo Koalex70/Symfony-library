@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Books;
 use App\Form\BooksType;
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,18 +23,6 @@ class GalleryController extends AbstractController
         return $this->render('gallery/index.html.twig', [
             'controller_name' => 'GalleryController',
             'books' => $books,
-        ]);
-    }
-
-    /**
-     * @Route("/gallery/single/{book}", name="single_book")
-     * @param Books $book
-     * @return Response
-     */
-    public function single(Books $book)
-    {
-        return $this->render('gallery/form.html.twig', [
-            'book' => $book,
         ]);
     }
 
@@ -64,14 +53,46 @@ class GalleryController extends AbstractController
     }
 
     /**
+     * @Route("/gallery/edit/{book}", name="edit_book")
+     * @param Request $request
+     * @param Books $book
+     * @return Response
+     */
+    public function edit(Request $request, Books $book)
+    {
+        $form = $this->createForm(BooksType::class, $book, [
+            'action' => $this->generateUrl('edit_book', [
+                'book' => $book->getId(),
+            ]),
+            'method' => 'POST',
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $book = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            return $this->redirectToRoute('gallery');
+        }
+        return $this->render('gallery/form.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/gallery/delete/{book}", name="delete_book")
      * @param Books $book
      * @return Response
      */
     public function delete(Books $book)
     {
-        return $this->render('gallery/form.html.twig', [
-            'book' => $book,
-        ]);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($book);
+        $em->flush();
+
+        return $this->redirectToRoute('gallery');
     }
 }
