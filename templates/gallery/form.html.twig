@@ -3,23 +3,23 @@
 {% block title %}Book{% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="container form-card">
         <h2>Book</h2>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             {{ form_start(form) }}
             <div class="form-group">
-                <label for="textarea">{{ form_label(form.name) }}</label>
-                {{ form_widget(form.name) }}
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name, {'attr': {'class' : 'form-control', 'id' : 'form-name'}} ) }}
             </div>
             <div class="form-group">
-                <label for="textarea">{{ form_label(form.author) }}</label>
-                {{ form_widget(form.author) }}
+                {{ form_label(form.author) }}
+                {{ form_widget(form.author, {'attr': {'class' : 'form-control', 'id' : 'form-author'}} ) }}
             </div>
             <div class="form-group">
-                <label for="textarea">{{ form_label(form.year) }}</label>
-                {{ form_widget(form.year) }}
+                {{ form_label(form.year) }}
+                {{ form_widget(form.year, {'attr': {'class' : 'form-control', 'id' : 'form-year'}} ) }}
             </div>
-            <button type="submit">Save</button>
+            <button class="btn btn-primary" type="submit">Save this book</button>
             {{ form_end(form) }}
         </div>
     </div>

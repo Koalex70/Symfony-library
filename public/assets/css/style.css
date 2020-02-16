@@ -45,6 +45,13 @@ a:hover, a:visited, a:focus {
   border-radius: 10px;
 }
 
+.form-card {
+  background: #6C8CD5;
+  border: 3px solid #4671D5;
+  border-radius: 10px;
+  padding-bottom: 25px;
+}
+
 @media (max-width: 767px) {
   .books-table__row:not(:last-child) {
     margin-bottom: 15px;
@@ -119,6 +126,10 @@ a:hover, a:visited, a:focus {
   }
   .books-table__buttons--add {
     max-width: 150px;
+  }
+
+  .form-card {
+    margin-top: 25px;
   }
 }
 
