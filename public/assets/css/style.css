@@ -1,0 +1,125 @@
+@charset "UTF-8";
+@import url("https://rsms.me/inter/inter.css");
+html {
+  font-family: "Inter", sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
+html, body {
+  font-family: Inter, sans-serif;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover, a:visited, a:focus {
+  outline: none;
+  text-decoration: none;
+}
+
+.books-table__head {
+  background: #d7ecef;
+  text-align: center;
+  font-weight: 500;
+}
+.books-table__head div:not(:last-child) {
+  border-right: 1px solid black;
+}
+.books-table__cell {
+  display: flex;
+}
+.books-table__buttons {
+  margin-top: 30px;
+}
+.books-table__buttons--add {
+  display: block;
+  text-align: center;
+  padding: 10px 0;
+  border: 1px solid #d7ecef;
+  border-radius: 10px;
+}
+
+@media (max-width: 767px) {
+  .books-table__row:not(:last-child) {
+    margin-bottom: 15px;
+  }
+  .books-table__cell {
+    position: relative;
+  }
+  .books-table__cell:not(.actions) {
+    padding-left: 90px;
+  }
+  .books-table__cell:before {
+    position: absolute;
+    font-size: 12px;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: lightgrey;
+  }
+  .books-table__cell.name:before {
+    content: "Название";
+  }
+  .books-table__cell.year:before {
+    content: "Год";
+  }
+  .books-table__cell.author:before {
+    content: "Автор";
+  }
+  .books-table__cell.actions {
+    flex-direction: column;
+  }
+  .books-table__cell.actions a {
+    display: block;
+    text-align: center;
+    padding: 5px 0;
+    margin: 5px 0;
+    border: 1px solid lightblue;
+  }
+  .books-table__cell.actions a i {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  .books-table__row {
+    display: flex;
+  }
+  .books-table__row:nth-child(odd) {
+    background: white;
+  }
+  .books-table__row:nth-child(even) {
+    background: #f3f8f8;
+  }
+  .books-table__cell {
+    align-items: center;
+  }
+  .books-table__cell.year {
+    justify-content: center;
+  }
+  .books-table__cell.actions {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .books-table__cell.actions a {
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+  .books-table__cell.actions a span {
+    display: none;
+  }
+  .books-table__cell:not(:last-child) {
+    border-right: 1px solid black;
+  }
+  .books-table__buttons--add {
+    max-width: 150px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

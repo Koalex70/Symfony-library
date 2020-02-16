@@ -1,0 +1,170 @@
+@import url('https://rsms.me/inter/inter.css');
+
+html {
+  font-family: 'Inter', sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: 'Inter var', sans-serif;
+  }
+}
+
+$border-color: black;
+$blue: #d7ecef;
+
+html, body {
+  font-family: Inter, sans-serif;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover,
+  &:visited,
+  &:focus {
+    outline: none;
+    text-decoration: none;
+  }
+
+}
+
+.books-table {
+  &__head {
+    background: $blue;
+    text-align: center;
+    font-weight: 500;
+
+    div:not(:last-child) {
+      border-right: 1px solid $border-color;
+    }
+  }
+
+  &__cell {
+    display: flex;
+  }
+
+  &__buttons {
+    margin-top: 30px;
+
+    &--add {
+      display: block;
+      text-align: center;
+      padding: 10px 0;
+      border: 1px solid $blue;
+      border-radius: 10px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .books-table {
+    &__row {
+      &:not(:last-child) {
+        margin-bottom: 15px;
+      }
+    }
+
+    &__cell {
+      position: relative;
+
+      &:not(.actions) {
+        padding-left: 90px;
+      }
+
+      &:before {
+        position: absolute;
+        font-size: 12px;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: lightgrey;
+      }
+
+      &.name {
+        &:before {
+          content: 'Название';
+        }
+      }
+
+      &.year {
+        &:before {
+          content: 'Год';
+        }
+      }
+
+      &.author {
+        &:before {
+          content: 'Автор';
+        }
+      }
+
+      &.actions {
+        flex-direction: column;
+
+        a {
+          display: block;
+          text-align: center;
+          padding: 5px 0;
+          margin: 5px 0;
+          border: 1px solid lightblue;
+
+          i {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .books-table {
+    &__row {
+      display: flex;
+
+      &:nth-child(odd) {
+        background: white;
+      }
+
+      &:nth-child(even) {
+        background: #f3f8f8;
+      }
+    }
+
+    &__cell {
+      align-items: center;
+
+      &.year {
+        justify-content: center;
+      }
+
+      &.actions {
+        flex-direction: row;
+        justify-content: space-around;
+
+        a {
+          padding: 0;
+          margin: 0;
+          border: none;
+
+          span {
+            display: none;
+          }
+        }
+      }
+
+      &:not(:last-child) {
+        border-right: 1px solid $border-color;
+      }
+    }
+
+    &__buttons {
+      &--add {
+        max-width: 150px;
+      }
+    }
+  }
+}

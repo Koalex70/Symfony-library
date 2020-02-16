@@ -3,18 +3,34 @@
 {% block title %}Books {% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h2>List of books</h2>
-        <a href="{{ path('add_book') }}">Add new book</a>
+    <div class="container-fluid books-table">
+        <div class="row hidden-xs books-table__head">
+            <div class="col-sm-4 col-md-4 col-lg-5">Название</div>
+            <div class="col-sm-2 col-md-2 col-lg-1">Год</div>
+            <div class="col-sm-4 col-md-4 col-lg-5">Автор</div>
+            <div class="col-sm-2 col-md-2 col-lg-1"></div>
+        </div>
         {% for book in books %}
-            <div class="card bg-primary text-white">
-                <div class="card-body">
-                    <div>Name: {{ book.name }}</div>
-                    <div>Author: {{ book.author }}</div>
-                    <div>Year: {{ book.year }}</div>
-                    <div class="text-white bg-white"><a href="{{ path('edit_book', { 'book': book.id }) }}">Edit</a></div>
+            <div class="row books-table__row">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-5 books-table__cell name">{{ book.name }}</div>
+                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-1 books-table__cell year">{{ book.year }}</div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-5 books-table__cell author">{{ book.author }}</div>
+                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-1 books-table__cell actions">
+                    <a href="{{ path('edit_book', { 'book': book.id }) }}">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                        <span>Редактировать</span>
+                    </a>
+                    <a href="{{ path('delete_book', { 'book': book.id }) }}">
+                        <i class="glyphicon glyphicon-trash"></i>
+                        <span>Удалить</span>
+                    </a>
                 </div>
             </div>
         {% endfor %}
+        <div class="row books-table__buttons">
+            <div class="col-xs-12 col-sm-2 col-md-2">
+                <a href="{{ path('add_book') }}" class="books-table__buttons--add">Добавить</a>
+            </div>
+        </div>
     </div>
 {% endblock %}
